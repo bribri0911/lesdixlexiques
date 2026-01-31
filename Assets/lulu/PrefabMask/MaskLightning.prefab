@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a084dff0b1dfb9a4192c97393c29c3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lightning
+  canUse: 1
+  cooldown: 5
   DmgLightning: 25
   ProjectileSpeed: 200
   gOLightnig: {fileID: 7894195821531907276, guid: e2db3e13bb2a473489a4c800aa9794ee, type: 3}
