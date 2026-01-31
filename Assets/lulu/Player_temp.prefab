@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3960340282379916868}
   - component: {fileID: 372518646047166410}
   - component: {fileID: 6332454323648481056}
+  - component: {fileID: 5534610849443782857}
   m_Layer: 0
   m_Name: Player_temp
   m_TagString: Untagged
@@ -82,7 +83,7 @@ MonoBehaviour:
   deceleration: 2
   lastDirection: {x: 0, y: 0}
   getMask: {fileID: 372518646047166410}
-  prefabTemps: {fileID: 4855842248813454624, guid: 69fce681ba95e1746a67f1fdec94beaf, type: 3}
+  prefabTemps: {fileID: 4855842248813454624, guid: 6dc6ae4597882c04daa3dc269a91bc99, type: 3}
 --- !u!114 &372518646047166410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +114,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_Point_De_Vie
   gOGestionEvents: {fileID: 0}
   Player_pv: 100
+--- !u!114 &5534610849443782857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741271800807670686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5671779b5ced61b4d8420f9740e1efc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisions
+  P: {fileID: 0}
+  D: {fileID: 0}
 --- !u!1 &5972841115376568334
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,9 +3,9 @@ using UnityEngine;
 public class Lightning : UseEffect
 {
     [SerializeField]
-    private float DmgLightning = 25f;
+    public float DmgLightning = 25f;
     [SerializeField]
-    private float ProjectileSpeed = 2000f;
+    private float ProjectileSpeed = 5f;
 
     [SerializeField]
     private GameObject gOLightnig; // Assurez-vous que ce préfab a le script Projectile et un Rigidbody2D
@@ -19,6 +19,8 @@ public class Lightning : UseEffect
         {
             // 2. On instancie le projectile à la position actuelle
             GameObject projObj = Instantiate(gOLightnig, transform.position, Quaternion.identity);
+            projObj.transform.SetParent(player.transform, false);
+            projObj.transform.localPosition = Vector3.zero;
 
             // 3. On récupère le script Projectile pour le configurer
             Projectile projScript = projObj.GetComponent<Projectile>();

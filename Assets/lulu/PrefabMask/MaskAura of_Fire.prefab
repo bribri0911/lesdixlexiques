@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5659688510268659202}
-  - component: {fileID: -8506567990721829024}
+  - component: {fileID: -5510177604571306357}
   m_Layer: 0
-  m_Name: MaskLightning
+  m_Name: MaskAura of_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 5893738772978058317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8506567990721829024
+--- !u!114 &-5510177604571306357
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4855842248813454624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a084dff0b1dfb9a4192c97393c29c3f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1085d3f629591734eb0f1680c3c4acfc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lightning
-  DmgLightning: 25
-  ProjectileSpeed: 5
-  gOLightnig: {fileID: 7894195821531907276, guid: e2db3e13bb2a473489a4c800aa9794ee, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::Aura_Fire
+  DmgAura_Fire: 16
+  gOAura_Fire: {fileID: 7904973635547353298, guid: e8c16e5544015b24e95635cbd73dbef5, type: 3}
 --- !u!1 &6990007707878073052
 GameObject:
   m_ObjectHideFlags: 0

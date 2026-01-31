@@ -12,6 +12,7 @@ public class Player_Point_De_Vie : MonoBehaviour
 
 
 
+    [SerializeField]
     public void GetDomage(float DmgTake) 
     {
 
@@ -34,9 +35,7 @@ public class Player_Point_De_Vie : MonoBehaviour
             gameObject.SetActive(false);
 
     }
-  
-
-
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
