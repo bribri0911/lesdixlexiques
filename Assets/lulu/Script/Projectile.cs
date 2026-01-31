@@ -4,7 +4,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float lifetime = 10f;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float damage; 
     public string userId;
 
@@ -41,6 +41,9 @@ public class Projectile : MonoBehaviour
                 Player_Point_De_Vie player_Point_De_Vie = temps.GetComponentInParent<Player_Point_De_Vie>();
                 player_Point_De_Vie.GetDomage(damage);
             }
+
+            
         }
+
     }
 }

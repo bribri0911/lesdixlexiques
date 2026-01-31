@@ -7,7 +7,7 @@ public class PlayerController2D : MonoBehaviour
     public float moveSpeed = 5f;
 
     [Header("Réglages Glisse")]
-    public float acceleration = 10f;  // Sensibilité de la prise de vitesse
+    public float acceleration = 10f;  
     public float deceleration = 2f;
 
     public Vector2 lastDirection;
@@ -24,6 +24,11 @@ public class PlayerController2D : MonoBehaviour
     {
         acceleration = accel;
         deceleration = decel;
+    }
+
+    public void StopMovement(float time)
+    {
+        
     }
 
     public void ResetMovement()
@@ -75,4 +80,6 @@ public class PlayerController2D : MonoBehaviour
 
         targetVelocity = Vector2.zero;
     }
+
+    
 }

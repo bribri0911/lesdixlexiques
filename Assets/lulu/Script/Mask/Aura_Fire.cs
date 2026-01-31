@@ -4,28 +4,38 @@ public class Aura_Fire : UseEffect
 {
     [SerializeField]
     private float DmgAura_Fire = 16f;
+    
 
     [SerializeField]
     private GameObject gOAura_Fire;
+
     public override void Use()
     {
-        // 1. On cherche le PlayerController2D dans les parents de cet objet
         PlayerController2D player = GetComponentInParent<PlayerController2D>();
 
         if (player != null)
         {
-            // 2. On instancie le projectile à la position actuelle
-            GameObject projObj = Instantiate(gOAura_Fire, transform.position, Quaternion.identity);
-            projObj.transform.SetParent(player.transform, false);
-            projObj.transform.localPosition = Vector3.zero;
+            // SÉCURITÉ : Vérifier si le joueur a déjà une aura pour éviter d'en empiler 50
+            AuraBase existingAura = player.GetComponentInChildren<AuraBase>();
+            if (existingAura != null)
+            {
+                // Si une aura existe déjà, on ne fait rien (ou on pourrait la détruire pour faire un "Toggle")
+                return; 
+            }
+
+            // Création de l'aura
+            GameObject auraObj = Instantiate(gOAura_Fire, transform.position, Quaternion.identity);
             
-            // 3. On récupère le script Projectile pour le configurer
-            Projectile projScript = projObj.GetComponent<Projectile>();
-              
-        }
-        else
-        {
-            Debug.LogWarning("PlayerController2D introuvable dans les parents de Fire_Ball !");
+            // On colle l'aura au joueur (enfant du Transform du joueur)
+            auraObj.transform.SetParent(player.transform, false);
+            auraObj.transform.localPosition = Vector3.zero;
+
+            // Configuration des dégâts
+            AuraBase auraScript = auraObj.GetComponent<AuraBase>();
+            if (auraScript != null)
+            {
+                auraScript.Setup(DmgAura_Fire, player.userId);
+            }
         }
     }
 }

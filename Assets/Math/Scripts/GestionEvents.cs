@@ -9,6 +9,28 @@ public class GestionEvents : MonoBehaviour
     private bool canTogglePVP = false;
     private Coroutine pvpCoroutine;
 
+    [SerializeField]
+    private GameObject _FireBallEventPrefab;
+
+
+    void OnEnable()
+    {
+        
+        WebsocketManage.OnIceWorld += HandleActionCreateFireBall;
+    }
+
+    void OnDisable()
+    {
+        
+        WebsocketManage.OnIceWorld -= HandleActionCreateFireBall;
+    }
+
+    void HandleActionCreateFireBall()
+    {
+        
+    }
+
+
     void Start()
     {
         pvpCoroutine = StartCoroutine(AutoActivatePVP());
