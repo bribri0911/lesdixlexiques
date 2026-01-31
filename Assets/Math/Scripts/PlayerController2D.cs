@@ -14,11 +14,23 @@ public class PlayerController2D : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 targetVelocity;
-    
+
     [SerializeField]
     private GetMask getMask;
     [SerializeField]
-    private GameObject prefabTemps; 
+    private GameObject prefabTemps;
+
+    public void SetMovementState(float accel, float decel)
+    {
+        acceleration = accel;
+        deceleration = decel;
+    }
+
+    public void ResetMovement()
+    {
+        acceleration = 10f;
+        deceleration = 5f;
+    }
 
 
     void Awake()

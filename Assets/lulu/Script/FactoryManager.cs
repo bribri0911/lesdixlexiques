@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class FactoryManager : MonoBehaviour
@@ -38,22 +39,25 @@ public class FactoryManager : MonoBehaviour
 
     private void HandleActionIceWorld()
     {
-        // foreach (var player in playerDict)
-        // {
-        //     player
-        // }
+        StartCoroutine(IceWorldRoutine());
     }
+
+    private IEnumerator IceWorldRoutine()
+    {
+        foreach (var p in playerDict.Values) p.SetMovementState(2f, 0.5f);
+
+        yield return new WaitForSeconds(10f);
+
+        foreach (var p in playerDict.Values) p.ResetMovement();
+    }
+
 
     private void HandleAction(string id, Vector2 moveDir)
     {
-        // Sécurité : Si l'ID est vide ou nul, on stoppe
         if (string.IsNullOrEmpty(id)) return;
 
-        // 1. VERIFICATION : Est-ce que ce joueur existe déjà ?
         if (!playerDict.ContainsKey(id))
         {
-            // On vérifie une deuxième fois dans la hiérarchie au cas où 
-            // (Sécurité si le dictionnaire a eu un raté)
             PlayerController2D existingPlayer = FindPlayerByIdInScene(id);
 
             if (existingPlayer != null)
@@ -63,11 +67,10 @@ public class FactoryManager : MonoBehaviour
             else
             {
                 SpawnPlayer(id);
-                return; // On sort pour éviter de Move au premier frame
+                return;
             }
         }
 
-        // 2. EXECUTION : On fait bouger le joueur existant
         if (playerDict.TryGetValue(id, out PlayerController2D controller))
         {
             controller.Move(moveDir);
