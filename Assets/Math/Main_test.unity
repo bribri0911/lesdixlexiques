@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55b2196a997ab842b186e8095cf1106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FactoryManager
-  playerPrefab: {fileID: 2741271800807670686, guid: c8eff701b88fe05449c178a2769779f9, type: 3}
+  playerPrefab: {fileID: 2741271800807670686, guid: ce258c5df6146e045b666a8ecddbca76, type: 3}
   activePlayersDebug: []
 --- !u!1 &1804155811
 GameObject:

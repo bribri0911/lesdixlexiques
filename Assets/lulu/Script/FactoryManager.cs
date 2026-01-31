@@ -161,7 +161,7 @@ public class FactoryManager : MonoBehaviour
 
         if (playerDict.TryGetValue(id, out PlayerController2D controller))
         {
-            controller.GetMask();
+            controller.GetMaskFunction();
         }
     }
 
@@ -185,7 +185,6 @@ public class FactoryManager : MonoBehaviour
 
         playerDict.Add(id, ctrl);
 
-        // On l'ajoute à la liste visuelle de l'inspecteur
         activePlayersDebug.Add(new UserData { id = id, controller = ctrl });
     }
 

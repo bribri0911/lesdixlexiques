@@ -7,6 +7,12 @@ public class PlayerController2D : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 targetVelocity;
+    
+    [SerializeField]
+    private GetMask getMask;
+    [SerializeField]
+    private GameObject prefabTemps; 
+
 
     void Awake()
     {
@@ -19,19 +25,20 @@ public class PlayerController2D : MonoBehaviour
         targetVelocity = direction * moveSpeed;
     }
 
+
     public void UseMask()
     {
-        Debug.Log("Use Mask");
+        getMask.UseMaskActive();
     }
 
-    public void ChangeMask(float direction)
+    public void ChangeMask(int direction)
     {
-        Debug.Log("Change Mask");
+        getMask.ChangeMask(direction);
     }
 
-    public void GetMask()
+    public void GetMaskFunction()
     {
-        Debug.Log("Get Mask");
+        getMask.AddMask(prefabTemps);
     }
 
     void FixedUpdate()

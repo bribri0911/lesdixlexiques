@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -7,6 +8,12 @@ public class PlayerController2D_temp : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 targetVelocity;
+
+    [SerializeField]
+    private GetMask getMask;
+    [SerializeField]
+    private GameObject prefabTemps; 
+
 
     void Awake()
     {
@@ -21,7 +28,7 @@ public class PlayerController2D_temp : MonoBehaviour
 
     public void UseMask()
     {
-        Debug.Log("Use Mask");
+        getMask.AddMask(prefabTemps);
     }
 
     public void ChangeMask(float direction)
