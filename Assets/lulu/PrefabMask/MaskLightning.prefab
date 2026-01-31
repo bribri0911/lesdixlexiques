@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lightning
   DmgLightning: 25
-  ProjectileSpeed: 5
+  ProjectileSpeed: 200
   gOLightnig: {fileID: 7894195821531907276, guid: e2db3e13bb2a473489a4c800aa9794ee, type: 3}
 --- !u!1 &6990007707878073052
 GameObject:
