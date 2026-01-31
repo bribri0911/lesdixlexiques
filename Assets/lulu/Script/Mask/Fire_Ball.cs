@@ -30,7 +30,7 @@ public class Fire_Ball : UseEffect
 
             if (projScript != null)
             {
-                projScript.Setup(dir, ProjectileSpeed, DmgFire_Ball);
+                projScript.Setup(dir, ProjectileSpeed, DmgFire_Ball, player.userId);
             }
         }
         else

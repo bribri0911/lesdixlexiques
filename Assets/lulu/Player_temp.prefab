@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 3960340282379916868}
   - component: {fileID: 372518646047166410}
   - component: {fileID: 6332454323648481056}
-  - component: {fileID: 5534610849443782857}
   m_Layer: 0
   m_Name: Player_temp
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,20 +113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_Point_De_Vie
   gOGestionEvents: {fileID: 0}
   Player_pv: 100
---- !u!114 &5534610849443782857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2741271800807670686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5671779b5ced61b4d8420f9740e1efc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisions
-  P: {fileID: 0}
-  D: {fileID: 0}
 --- !u!1 &5972841115376568334
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +157,7 @@ GameObject:
   - component: {fileID: 8460527597986114911}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

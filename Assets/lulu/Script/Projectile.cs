@@ -5,26 +5,46 @@ public class Projectile : MonoBehaviour
 {
     public float lifetime = 10f;
     private Rigidbody2D rb;
-    private float damage; // Pour stocker les dégâts si besoin plus tard
+    public float damage; 
+    public string userId;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0; // S'assurer que le projectile ne tombe pas
-        Destroy(gameObject, lifetime); // Auto-destruction
+        rb.gravityScale = 0;
+        Destroy(gameObject, lifetime); 
     }
 
-    public void Setup(Vector2 direction, float speed, float dmg)
+    public void Setup(Vector2 direction, float speed, float dmg, string idUser)
     {
-        damage = dmg;
 
-        // Normaliser la direction pour avoir une vitesse constante peu importe la diagonale
+        damage = dmg;
+        userId = idUser;
+
         rb.linearVelocity = direction.normalized * speed;
 
-        // Optionnel : Orienter le sprite dans la direction du tir
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    // Ici vous pourrez ajouter OnTriggerEnter2D pour gérer les collisions
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if(collision.tag == "Player")
+        {
+            Debug.Log("Player");
+            GameObject temps = collision.gameObject;
+
+            PlayerController2D playerController2D = temps.GetComponentInParent<PlayerController2D>();
+
+            Debug.Log($"{playerController2D.userId} - {userId}");
+
+            if(playerController2D.userId != userId)
+            {
+                Debug.Log("Autre player");
+                Player_Point_De_Vie player_Point_De_Vie = temps.GetComponentInParent<Player_Point_De_Vie>();
+                player_Point_De_Vie.GetDomage(damage);
+            }
+        }
+    }
 }
