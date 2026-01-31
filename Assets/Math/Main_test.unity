@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &102355316
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3734081149591143070, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_Name
+      value: GestionEvents
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.68799
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36759
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526450246955778741, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
 --- !u!1 &110771828
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,51 +378,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1635595551}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &431375243
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 431375245}
-  - component: {fileID: 431375246}
-  m_Layer: 0
-  m_Name: GestionEvents
-  m_TagString: EventsManager
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &431375245
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431375243}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.68799, y: 0.36759, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &431375246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431375243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33a68895f5495b84da1730906c74332d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GestionEvents
-  pvpActif: 0
 --- !u!1 &937474710
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55b2196a997ab842b186e8095cf1106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FactoryManager
-  playerPrefab: {fileID: 2741271800807670686, guid: ce258c5df6146e045b666a8ecddbca76, type: 3}
+  playerPrefab: {fileID: 2741271800807670686, guid: c8eff701b88fe05449c178a2769779f9, type: 3}
   activePlayersDebug: []
 --- !u!1 &1804155811
 GameObject:
@@ -932,4 +944,4 @@ SceneRoots:
   - {fileID: 1400001280}
   - {fileID: 1750040351}
   - {fileID: 1635595551}
-  - {fileID: 431375245}
+  - {fileID: 102355316}

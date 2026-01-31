@@ -76,6 +76,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController2D
   userId: 
   moveSpeed: 5
+  getMask: {fileID: 0}
+  prefabTemps: {fileID: 0}
 --- !u!114 &5369727030943626001
 MonoBehaviour:
   m_ObjectHideFlags: 0
