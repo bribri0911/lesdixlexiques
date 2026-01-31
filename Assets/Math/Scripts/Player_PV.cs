@@ -6,7 +6,9 @@ public class Player_Point_De_Vie : MonoBehaviour
     private GameObject gOGestionEvents;
     private GestionEvents gestionEvents;
     public float Player_pv=100f;
-    public float Time_Set_PVP = 30f;
+    public readonly float Player_pv_max=100f;
+
+
 
 
 
@@ -16,7 +18,10 @@ public class Player_Point_De_Vie : MonoBehaviour
         if (gestionEvents.pvpActif)
         {
             Player_pv -= DmgTake;
-
+            if (Player_pv>Player_pv_max)
+            
+                Player_pv = Player_pv_max;
+            
             CheckIsDead();
         }
 
@@ -25,8 +30,8 @@ public class Player_Point_De_Vie : MonoBehaviour
 
     private void CheckIsDead()
     {
-        //if (Player_pv < 0)
-       //     this.SetActive(false);
+        if (Player_pv < 0)
+            gameObject.SetActive(false);
 
     }
   
