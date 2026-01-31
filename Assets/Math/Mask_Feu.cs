@@ -5,7 +5,7 @@ public class Mask_Feu : Mask_Object
     
     public Mask_Feu () 
     {
-        ID = 1;
+        Id = 1;
     }
     
     public void Fire_Ball()
