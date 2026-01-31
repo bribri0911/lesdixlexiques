@@ -5,7 +5,7 @@ public class Lightning : UseEffect
     [SerializeField]
     public float DmgLightning = 25f;
     [SerializeField]
-    private float ProjectileSpeed = 5f;
+    private float ProjectileSpeed = 200f;
 
     [SerializeField]
     private GameObject gOLightnig; // Assurez-vous que ce préfab a le script Projectile et un Rigidbody2D
