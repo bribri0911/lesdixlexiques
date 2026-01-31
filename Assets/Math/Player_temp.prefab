@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 310218865630218264}
   - component: {fileID: 327238257912308257}
   - component: {fileID: 8467157631030836738}
+  - component: {fileID: 5369727030943626001}
   m_Layer: 0
   m_Name: Player_temp
   m_TagString: Untagged
@@ -49,7 +50,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -75,6 +76,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController2D
   userId: 
   moveSpeed: 5
+--- !u!114 &5369727030943626001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741271800807670686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0451a6ea8ee633f4b848725dd061b195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  gOGestionEvents: {fileID: 0}
+  Player_pv: 100
+  Time_Set_PVP: 30
 --- !u!1 &6438382449928663359
 GameObject:
   m_ObjectHideFlags: 0
