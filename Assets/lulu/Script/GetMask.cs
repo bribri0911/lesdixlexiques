@@ -87,7 +87,7 @@ public class GetMask : MonoBehaviour
 
             if (currentMaskScript != null)
             {
-                currentMaskScript.Use();
+                currentMaskScript.TryUse();
             }
         }
     }
