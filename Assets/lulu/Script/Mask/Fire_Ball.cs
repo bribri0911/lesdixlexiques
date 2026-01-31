@@ -23,6 +23,7 @@ public class Fire_Ball : UseEffect
             // 3. On récupère le script Projectile pour le configurer
             Projectile projScript = projObj.GetComponent<Projectile>();
             
+
             // Sécurité : si lastDirection est zéro (joueur immobile au début), on tire à droite par défaut
             Vector2 dir = player.lastDirection == Vector2.zero ? Vector2.right : player.lastDirection;
 
