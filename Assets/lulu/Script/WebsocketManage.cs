@@ -42,7 +42,7 @@ public class WebsocketManage : MonoBehaviour
     void Start()
     {
         // Initialisation du serveur sur le port 4242
-        wssv = new WebSocketServer(4242);
+        wssv = new WebSocketServer(System.Net.IPAddress.Any, 4242);
         
         // On définit la route "ws://127.0.0.1:4242/Data"
         wssv.AddWebSocketService<UnityBehavior>("/Data");
@@ -138,6 +138,7 @@ public class WebsocketManage : MonoBehaviour
         if (connectedUsers.Contains(id))
         {
             connectedUsers.Remove(id);
+            FactoryManager.Instance.RemovePlayer(id);
         }
     }
 
