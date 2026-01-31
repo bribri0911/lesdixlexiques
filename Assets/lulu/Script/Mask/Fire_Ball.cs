@@ -19,6 +19,7 @@ public class Fire_Ball : UseEffect
         {
             // 2. On instancie le projectile à la position actuelle
             GameObject projObj = Instantiate(gOFire_Ball, transform.position, Quaternion.identity);
+            projObj.transform.parent = this.GetComponent<GameObject>().transform;
 
             // 3. On récupère le script Projectile pour le configurer
             Projectile projScript = projObj.GetComponent<Projectile>();
