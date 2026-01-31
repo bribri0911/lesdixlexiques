@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController2D : MonoBehaviour
 {
     public string userId;
-    public float moveSpeed = 5f;
+    public float moveSpeed = 5f, movespeedDeafal=5f;
 
     [Header("Réglages Glisse")]
     public float acceleration = 10f;  
@@ -26,9 +26,17 @@ public class PlayerController2D : MonoBehaviour
         deceleration = decel;
     }
 
-    public void StopMovement(float time)
-    {
         
+    public void StopMovement(float TimeSlow)
+    {
+        StartCoroutine(ResetSpeedRoutine(TimeSlow));
+        moveSpeed = 0f; 
+    }
+
+    private System.Collections.IEnumerator ResetSpeedRoutine(float TimeSlow)
+    {
+        yield return new WaitForSeconds(TimeSlow);
+        moveSpeed = movespeedDeafal; 
     }
 
     public void ResetMovement()

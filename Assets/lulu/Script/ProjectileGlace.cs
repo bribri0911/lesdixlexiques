@@ -4,9 +4,9 @@ using UnityEngine;
 public class ProjectileGlace : Projectile
 {
 
-    public float TimeSlow;
+    public float TimeSlow=1f;
 
-    public void Setup(Vector2 direction, float speed, float dmg, string idUser , float timeSlow)
+    public void Setup(Vector2 direction, float speed, float dmg, string idUser, float timeSlow)
     {
 
         damage = dmg;
@@ -32,7 +32,7 @@ public class ProjectileGlace : Projectile
             {
                 Player_Point_De_Vie player_Point_De_Vie = temps.GetComponentInParent<Player_Point_De_Vie>();
                 player_Point_De_Vie.GetDomage(damage);
-                playerController2D.StopMovement(2f);
+                playerController2D.StopMovement(TimeSlow);
             }
 
             
