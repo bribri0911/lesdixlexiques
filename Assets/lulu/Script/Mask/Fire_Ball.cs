@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class Lightning : UseEffect
+public class Fire_Ball : UseEffect
 {
     [SerializeField]
-    private float DmgLightning = 25f;
-    [SerializeField]
-    private float ProjectileSpeed = 2000f;
+    private float DmgFire_Ball = 10f;
 
     [SerializeField]
-    private GameObject gOLightnig; // Assurez-vous que ce préfab a le script Projectile et un Rigidbody2D
+    private float ProjectileSpeed = 30f;
 
+    [SerializeField]
+    private GameObject gOFire_Ball;
     public override void Use()
     {
         // 1. On cherche le PlayerController2D dans les parents de cet objet
@@ -18,7 +18,7 @@ public class Lightning : UseEffect
         if (player != null)
         {
             // 2. On instancie le projectile à la position actuelle
-            GameObject projObj = Instantiate(gOLightnig, transform.position, Quaternion.identity);
+            GameObject projObj = Instantiate(gOFire_Ball, transform.position, Quaternion.identity);
 
             // 3. On récupère le script Projectile pour le configurer
             Projectile projScript = projObj.GetComponent<Projectile>();
@@ -28,12 +28,12 @@ public class Lightning : UseEffect
 
             if (projScript != null)
             {
-                projScript.Setup(dir, ProjectileSpeed, DmgLightning);
+                projScript.Setup(dir, ProjectileSpeed, DmgFire_Ball);
             }
         }
         else
         {
-            Debug.LogWarning("PlayerController2D introuvable dans les parents de Lightning !");
+            Debug.LogWarning("PlayerController2D introuvable dans les parents de Fire_Ball !");
         }
     }
 }

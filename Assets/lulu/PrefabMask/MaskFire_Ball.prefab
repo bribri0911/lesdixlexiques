@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5659688510268659202}
-  - component: {fileID: -8506567990721829024}
+  - component: {fileID: 4542509129822739140}
   m_Layer: 0
-  m_Name: MaskLightning
+  m_Name: MaskFire_Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 5893738772978058317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8506567990721829024
+--- !u!114 &4542509129822739140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4855842248813454624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a084dff0b1dfb9a4192c97393c29c3f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0413821caa546ec4cb31672576d37625, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Lightning
-  DmgLightning: 25
-  ProjectileSpeed: 200
-  gOLightnig: {fileID: 7894195821531907276, guid: e2db3e13bb2a473489a4c800aa9794ee, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::Fire_Ball
+  DmgFire_Ball: 10
+  ProjectileSpeed: 30
+  gOFire_Ball: {fileID: 8504225862538174102, guid: 7708ba115415e494793f52b23e873556, type: 3}
 --- !u!1 &6990007707878073052
 GameObject:
   m_ObjectHideFlags: 0

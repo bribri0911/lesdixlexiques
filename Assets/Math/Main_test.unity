@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6110911284547662170, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: pvpActif
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -561,7 +565,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.38106537, y: 12.1495075}
+  m_Size: {x: 0.6, y: 12.1495075}
   m_EdgeRadius: 0
 --- !u!4 &1487822529
 Transform:
@@ -572,7 +576,7 @@ Transform:
   m_GameObject: {fileID: 1487822527}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5100497, y: 0.0005265572, z: 0}
+  m_LocalPosition: {x: -0.5156, y: 0.0005265572, z: 0}
   m_LocalScale: {x: 0.051698767, y: 0.082274586, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -588,7 +592,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1635595551}
   - component: {fileID: 1635595550}
-  - component: {fileID: 1635595552}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -673,52 +676,6 @@ Transform:
   - {fileID: 937474712}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1635595552
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635595549}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1750040349
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55b2196a997ab842b186e8095cf1106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FactoryManager
-  playerPrefab: {fileID: 2741271800807670686, guid: c8eff701b88fe05449c178a2769779f9, type: 3}
+  playerPrefab: {fileID: 2741271800807670686, guid: ce258c5df6146e045b666a8ecddbca76, type: 3}
   activePlayersDebug: []
 --- !u!1 &1804155811
 GameObject:
