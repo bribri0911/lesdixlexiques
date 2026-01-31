@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController2D_temp : MonoBehaviour
+public class PlayerController2D : MonoBehaviour
 {
     public string userId;
     public float moveSpeed = 5f;

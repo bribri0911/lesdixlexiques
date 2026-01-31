@@ -33,7 +33,7 @@ public class FactoryManager : MonoBehaviour
         WebsocketManage.OnChangeMaskToRight += HandheldChangeMaskRight;
         WebsocketManage.OnGetMask += HandheldGetMask;
     }
-    
+
     private void HandleAction(string id, Vector2 moveDir)
     {
         // Sécurité : Si l'ID est vide ou nul, on stoppe
