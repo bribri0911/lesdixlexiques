@@ -1,16 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))] // Force l'ajout d'un Rigidbody2D sur le préfab
-public class AuraBase  : MonoBehaviour
+public class AuraBase : MonoBehaviour
 {
-    private float damagePerSecond;
-    private float tickTimer = 0f;
-    private float tickInterval = 1.5f; // Dégâts toutes les 1.5 secondes
+    public float damage;
+    public string userId;
 
-    public void Setup(float duration, float dmg)
+    // Pas de Start(), donc pas de destruction automatique !
+
+    public void Setup(float dmg, string idUser)
     {
-        this.damagePerSecond = dmg;
-        Destroy(gameObject, duration);
+        damage = dmg;
+        userId = idUser;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -29,6 +29,4 @@ public class AuraBase  : MonoBehaviour
             }
         }
     }
-
-    
 }
