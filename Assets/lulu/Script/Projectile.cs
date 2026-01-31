@@ -32,16 +32,12 @@ public class Projectile : MonoBehaviour
 
         if(collision.tag == "Player")
         {
-            Debug.Log("Player");
             GameObject temps = collision.gameObject;
 
             PlayerController2D playerController2D = temps.GetComponentInParent<PlayerController2D>();
 
-            Debug.Log($"{playerController2D.userId} - {userId}");
-
             if(playerController2D.userId != userId)
             {
-                Debug.Log("Autre player");
                 Player_Point_De_Vie player_Point_De_Vie = temps.GetComponentInParent<Player_Point_De_Vie>();
                 player_Point_De_Vie.GetDomage(damage);
             }
