@@ -27,11 +27,21 @@ public class FactoryManager : MonoBehaviour
 
     void OnEnable()
     {
+        WebsocketManage.OnIceWorld += HandleActionIceWorld;
+
         WebsocketManage.OnMoovePlayer += HandleAction;
         WebsocketManage.OnUseMask += HandleUseMask;
         WebsocketManage.OnChangeMaskToLeft += HandheldChangeMaskLeft;
         WebsocketManage.OnChangeMaskToRight += HandheldChangeMaskRight;
         WebsocketManage.OnGetMask += HandheldGetMask;
+    }
+
+    private void HandleActionIceWorld()
+    {
+        // foreach (var player in playerDict)
+        // {
+        //     player
+        // }
     }
 
     private void HandleAction(string id, Vector2 moveDir)
