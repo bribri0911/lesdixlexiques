@@ -1,25 +1,17 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))] // Force l'ajout d'un Rigidbody2D sur le préfab
-public class Projectile : MonoBehaviour
+public class ProjectileGlace : Projectile
 {
-    public float lifetime = 10f;
-    public Rigidbody2D rb;
-    public float damage; 
-    public string userId;
 
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 0;
-        Destroy(gameObject, lifetime); 
-    }
+    public float TimeSlow;
 
-    public void Setup(Vector2 direction, float speed, float dmg, string idUser)
+    public void Setup(Vector2 direction, float speed, float dmg, string idUser , float timeSlow)
     {
 
         damage = dmg;
         userId = idUser;
+        TimeSlow = timeSlow;
 
         rb.linearVelocity = direction.normalized * speed;
 
@@ -40,6 +32,7 @@ public class Projectile : MonoBehaviour
             {
                 Player_Point_De_Vie player_Point_De_Vie = temps.GetComponentInParent<Player_Point_De_Vie>();
                 player_Point_De_Vie.GetDomage(damage);
+                playerController2D.StopMovement(2f);
             }
 
             

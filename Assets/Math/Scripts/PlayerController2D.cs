@@ -26,6 +26,11 @@ public class PlayerController2D : MonoBehaviour
         deceleration = decel;
     }
 
+    public void StopMovement(float time)
+    {
+        
+    }
+
     public void ResetMovement()
     {
         acceleration = 10f;
