@@ -18,12 +18,11 @@ public class WebsocketManage : MonoBehaviour
     public static WebsocketManage Instance;
     private WebSocketServer wssv;
 
-    [SerializeField] 
+    [SerializeField]
     private string messageGet;
 
     public List<string> connectedUsers = new List<string>();
 
-    // File d'attente pour exécuter les actions sur le thread principal d'Unity
     private readonly Queue<Action> _mainThreadQueue = new Queue<Action>();
 
     // public static event Action<string, string> ChangeUserNamePlayer;
@@ -32,6 +31,18 @@ public class WebsocketManage : MonoBehaviour
     public static event Action<string> OnChangeMaskToLeft;
     public static event Action<string> OnChangeMaskToRight;
     public static event Action<string> OnGetMask;
+
+
+    public static event Action OnIceWorld;
+    public static event Action OnFireBall;
+    public static event Action OnCupCake;
+    public static event Action OnNo;
+    public static event Action OnScreamer;
+    public static event Action OnReverseColor;
+    public static event Action OnTile;
+    public static event Action OnCoffee;
+    public static event Action OnAperitif;
+    public static event Action OnImposteur;
 
 
     void Awake()
@@ -43,10 +54,10 @@ public class WebsocketManage : MonoBehaviour
     {
         // Initialisation du serveur sur le port 4242
         wssv = new WebSocketServer(System.Net.IPAddress.Any, 4242);
-        
+
         // On définit la route "ws://127.0.0.1:4242/Data"
         wssv.AddWebSocketService<UnityBehavior>("/Data");
-        
+
         wssv.Start();
         Debug.Log("✅ Serveur WebSocket lancé sur ws://127.0.0.1:4242/Data");
     }
@@ -71,9 +82,9 @@ public class WebsocketManage : MonoBehaviour
         int ARRIERE = 8; // 01000
         int USE_MASK = 16; // 10000
         int CHANGE_MACK_LEFT = 32;
-        int CHANGE_MACK_RIGHT = 64; 
+        int CHANGE_MACK_RIGHT = 64;
         int GET_MASK = 128;
-        
+
         if ((nbrAction & GAUCHE) != 0 && (nbrAction & DROITE) != 0)
         {
             nbrAction &= ~GAUCHE;
@@ -108,22 +119,47 @@ public class WebsocketManage : MonoBehaviour
         if ((nbrAction & CHANGE_MACK_LEFT) != 0)
         {
             OnChangeMaskToLeft?.Invoke(id);
-        }  
-        
+        }
+
         if ((nbrAction & CHANGE_MACK_RIGHT) != 0)
         {
             OnChangeMaskToRight?.Invoke(id);
-        }  
-        
+        }
+
         if ((nbrAction & GET_MASK) != 0)
         {
             OnGetMask?.Invoke(id);
-        }  
-        
+        }
+
 
     }
 
+    public void EventAction(int nbrEvent)
+    {
+        int ICE_WORLD = 1;   // 2^0
+        int FIRE_BALL = 2;   // 2^1
+        int CUP_CAKE = 4;   // 2^2
+        int NO = 8;   // 2^3
+        int SCREAMER = 16;  // 2^4
+        int REVERSE_COLOR = 32;  // 2^5
+        int TILE = 64;  // 2^6
+        int COFFEE = 128; // 2^7
+        int APERITIF = 256; // 2^8
+        int IMPOSTEUR = 512; // 2^9
+        
+        if ((nbrEvent & ICE_WORLD) != 0) OnIceWorld?.Invoke();
+        if ((nbrEvent & FIRE_BALL) != 0) OnFireBall?.Invoke();
+        if ((nbrEvent & CUP_CAKE) != 0) OnCupCake?.Invoke();
+        if ((nbrEvent & NO) != 0) OnNo?.Invoke();
+        if ((nbrEvent & SCREAMER) != 0) OnScreamer?.Invoke();
+        if ((nbrEvent & REVERSE_COLOR) != 0) OnReverseColor?.Invoke();
+        if ((nbrEvent & TILE) != 0) OnTile?.Invoke();
+        if ((nbrEvent & COFFEE) != 0) OnCoffee?.Invoke();
+        if ((nbrEvent & APERITIF) != 0) OnAperitif?.Invoke();
+        if ((nbrEvent & IMPOSTEUR) != 0) OnImposteur?.Invoke();
 
+        if (nbrEvent != 0) Debug.Log($"🎭 Events Globaux déclenchés (Somme : {nbrEvent})");
+    }
 
     public void AddUser(string id)
     {
@@ -157,7 +193,8 @@ public class UnityBehavior : WebSocketBehavior
     protected override void OnOpen()
     {
         string id = ID; // ID unique de la session
-        WebsocketManage.Instance.Enqueue(() => {
+        WebsocketManage.Instance.Enqueue(() =>
+        {
             WebsocketManage.Instance.AddUser(id);
         });
     }
@@ -166,26 +203,29 @@ public class UnityBehavior : WebSocketBehavior
     protected override void OnClose(CloseEventArgs e)
     {
         string id = ID;
-        WebsocketManage.Instance.Enqueue(() => {
+        WebsocketManage.Instance.Enqueue(() =>
+        {
             WebsocketManage.Instance.RemoveUser(id);
         });
     }
 
     protected override void OnMessage(MessageEventArgs e)
     {
-        WebsocketManage.Instance.Enqueue(() => {
-            // 1. Lire le JSON
+        WebsocketManage.Instance.Enqueue(() =>
+        {
             SocketData data = JsonUtility.FromJson<SocketData>(e.Data);
-            
-            // 2. Si le type est "INPUT", on convertit le payload en int et on lance l'action
-            if (data.type == "INPUT")
+
+            if (int.TryParse(data.payload, out int nbr))
             {
-                if (int.TryParse(data.payload, out int nbr))
+                if (data.type == "INPUT")
                 {
                     WebsocketManage.Instance.Inputaction(ID, nbr);
                 }
+                else if (data.type == "EVENT")
+                {
+                    WebsocketManage.Instance.EventAction(nbr);
+                }
             }
-            
         });
     }
 

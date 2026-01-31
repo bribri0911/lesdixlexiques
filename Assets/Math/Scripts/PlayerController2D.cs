@@ -5,6 +5,13 @@ public class PlayerController2D : MonoBehaviour
 {
     public string userId;
     public float moveSpeed = 5f;
+
+    [Header("Réglages Glisse")]
+    public float acceleration = 10f;  // Sensibilité de la prise de vitesse
+    public float deceleration = 2f;
+
+    public Vector2 lastDirection;
+
     private Rigidbody2D rb;
     private Vector2 targetVelocity;
     
@@ -22,7 +29,8 @@ public class PlayerController2D : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
-        targetVelocity = direction * moveSpeed;
+        lastDirection = direction;
+        targetVelocity = direction;
     }
 
 
@@ -43,7 +51,16 @@ public class PlayerController2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.linearVelocity = targetVelocity;
+        if (targetVelocity != Vector2.zero)
+        {
+            Vector2 targetVel = targetVelocity * moveSpeed;
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, targetVel, acceleration * Time.fixedDeltaTime);
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, deceleration * Time.fixedDeltaTime);
+        }
+
         targetVelocity = Vector2.zero;
     }
 }
