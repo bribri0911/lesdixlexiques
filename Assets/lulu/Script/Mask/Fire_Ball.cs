@@ -35,4 +35,6 @@ public class Fire_Ball : UseEffect
             Debug.LogWarning("PlayerController2D introuvable dans les parents de Fire_Ball !");
         }
     }
+
+
 }
