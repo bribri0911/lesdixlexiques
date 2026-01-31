@@ -81,7 +81,15 @@ public class GetMask : MonoBehaviour
 
     public void UseMaskActive()
     {
-        maskForPlayer[indexMask].GetComponent<UseEffect>().UseMask();
+        if (maskForPlayer[indexMask] != null)
+        {
+            UseEffect currentMaskScript = maskForPlayer[indexMask].GetComponent<UseEffect>();
+
+            if (currentMaskScript != null)
+            {
+                currentMaskScript.Use();
+            }
+        }
     }
 
 

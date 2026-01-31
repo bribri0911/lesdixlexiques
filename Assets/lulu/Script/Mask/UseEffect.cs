@@ -1,10 +1,6 @@
 using UnityEngine;
 
-public class UseEffect : MonoBehaviour
+public abstract class UseEffect : MonoBehaviour
 {
-    
-    public void UseMask()
-    {
-        
-    }
+    public abstract void Use();
 }
