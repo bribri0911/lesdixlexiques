@@ -28,8 +28,12 @@ public class FactoryManager : MonoBehaviour
     void OnEnable()
     {
         WebsocketManage.OnMoovePlayer += HandleAction;
+        WebsocketManage.OnUseMask += HandleUseMask;
+        WebsocketManage.OnChangeMaskToLeft += HandheldChangeMaskLeft;
+        WebsocketManage.OnChangeMaskToRight += HandheldChangeMaskRight;
+        WebsocketManage.OnGetMask += HandheldGetMask;
     }
-
+    
     private void HandleAction(string id, Vector2 moveDir)
     {
         // Sécurité : Si l'ID est vide ou nul, on stoppe
@@ -41,7 +45,7 @@ public class FactoryManager : MonoBehaviour
             // On vérifie une deuxième fois dans la hiérarchie au cas où 
             // (Sécurité si le dictionnaire a eu un raté)
             PlayerController2D existingPlayer = FindPlayerByIdInScene(id);
-            
+
             if (existingPlayer != null)
             {
                 playerDict.Add(id, existingPlayer);
@@ -61,9 +65,108 @@ public class FactoryManager : MonoBehaviour
         }
     }
 
+    private void HandleUseMask(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return;
+
+        if (!playerDict.ContainsKey(id))
+        {
+            PlayerController2D existingPlayer = FindPlayerByIdInScene(id);
+
+            if (existingPlayer != null)
+            {
+                playerDict.Add(id, existingPlayer);
+            }
+            else
+            {
+                SpawnPlayer(id);
+                return;
+            }
+        }
+
+        if (playerDict.TryGetValue(id, out PlayerController2D controller))
+        {
+            controller.UseMask();
+        }
+    }
+
+    private void HandheldChangeMaskLeft(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return;
+
+        if (!playerDict.ContainsKey(id))
+        {
+            PlayerController2D existingPlayer = FindPlayerByIdInScene(id);
+
+            if (existingPlayer != null)
+            {
+                playerDict.Add(id, existingPlayer);
+            }
+            else
+            {
+                SpawnPlayer(id);
+                return;
+            }
+        }
+
+        if (playerDict.TryGetValue(id, out PlayerController2D controller))
+        {
+            controller.ChangeMask(-1);
+        }
+    }
+
+    private void HandheldChangeMaskRight(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return;
+
+        if (!playerDict.ContainsKey(id))
+        {
+            PlayerController2D existingPlayer = FindPlayerByIdInScene(id);
+
+            if (existingPlayer != null)
+            {
+                playerDict.Add(id, existingPlayer);
+            }
+            else
+            {
+                SpawnPlayer(id);
+                return;
+            }
+        }
+
+        if (playerDict.TryGetValue(id, out PlayerController2D controller))
+        {
+            controller.ChangeMask(1);
+        }
+    }
+
+    private void HandheldGetMask(string id)
+    {
+        if (string.IsNullOrEmpty(id)) return;
+
+        if (!playerDict.ContainsKey(id))
+        {
+            PlayerController2D existingPlayer = FindPlayerByIdInScene(id);
+
+            if (existingPlayer != null)
+            {
+                playerDict.Add(id, existingPlayer);
+            }
+            else
+            {
+                SpawnPlayer(id);
+                return;
+            }
+        }
+
+        if (playerDict.TryGetValue(id, out PlayerController2D controller))
+        {
+            controller.GetMask();
+        }
+    }
+
     private PlayerController2D FindPlayerByIdInScene(string id)
     {
-        // Cherche dans tous les objets de type PlayerController2D dans la scène
         PlayerController2D[] allPlayers = FindObjectsByType<PlayerController2D>(FindObjectsSortMode.None);
         foreach (var p in allPlayers)
         {
@@ -75,13 +178,13 @@ public class FactoryManager : MonoBehaviour
     private void SpawnPlayer(string id)
     {
         GameObject go = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
-        go.name = "Player_" + id.Substring(0, 6); // On coupe l'ID pour que ce soit lisible dans la hiérarchie
-        
+        go.name = "Player_" + id.Substring(0, 6);
+
         PlayerController2D ctrl = go.GetComponent<PlayerController2D>();
         ctrl.userId = id;
 
         playerDict.Add(id, ctrl);
-        
+
         // On l'ajoute à la liste visuelle de l'inspecteur
         activePlayersDebug.Add(new UserData { id = id, controller = ctrl });
     }

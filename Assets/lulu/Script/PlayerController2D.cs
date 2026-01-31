@@ -14,18 +14,29 @@ public class PlayerController2D : MonoBehaviour
         rb.gravityScale = 0;
     }
 
-    // Cette fonction est appelée par la Factory
     public void Move(Vector2 direction)
     {
         targetVelocity = direction * moveSpeed;
     }
 
+    public void UseMask()
+    {
+        Debug.Log("Use Mask");
+    }
+
+    public void ChangeMask(float direction)
+    {
+        Debug.Log("Change Mask");
+    }
+
+    public void GetMask()
+    {
+        Debug.Log("Get Mask");
+    }
+
     void FixedUpdate()
     {
         rb.linearVelocity = targetVelocity;
-        
-        // On reset la vélocité cible pour que le joueur s'arrête 
-        // s'il ne reçoit plus d'inputs du WebSocket
         targetVelocity = Vector2.zero;
     }
 }
