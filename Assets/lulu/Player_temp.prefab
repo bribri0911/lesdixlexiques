@@ -82,7 +82,7 @@ MonoBehaviour:
   deceleration: 2
   lastDirection: {x: 0, y: 0}
   getMask: {fileID: 372518646047166410}
-  prefabTemps: {fileID: 4855842248813454624, guid: 6dc6ae4597882c04daa3dc269a91bc99, type: 3}
+  prefabTemps: {fileID: 4855842248813454624, guid: 1cc604182d32b3941a9f63e44ee06da1, type: 3}
 --- !u!114 &372518646047166410
 MonoBehaviour:
   m_ObjectHideFlags: 0

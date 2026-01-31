@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class Lightning : UseEffect
+public class Ice_Ball : UseEffect
 {
     [SerializeField]
-    public float DmgLightning = 25f;
-    [SerializeField]
-    private float ProjectileSpeed = 200f;
+    private float DmgIce_Ball = 25f;
 
     [SerializeField]
-    private GameObject gOLightnig; // Assurez-vous que ce préfab a le script Projectile et un Rigidbody2D
+    private float ProjectileSpeed = 5f;
 
+    [SerializeField]
+    private GameObject gOIce_Ball;
     public override void Use()
     {
         // 1. On cherche le PlayerController2D dans les parents de cet objet
@@ -17,7 +17,7 @@ public class Lightning : UseEffect
 
         if (player != null)
         {
-            GameObject projObj = Instantiate(gOLightnig, transform.position, Quaternion.identity);
+            GameObject projObj = Instantiate(gOIce_Ball, transform.position, Quaternion.identity);
 
             projObj.transform.parent = player.transform;
 
@@ -27,12 +27,14 @@ public class Lightning : UseEffect
 
             if (projScript != null)
             {
-                projScript.Setup(dir, ProjectileSpeed, DmgLightning, player.userId);
+                projScript.Setup(dir, ProjectileSpeed, DmgIce_Ball, player.userId);
             }
         }
         else
         {
-            Debug.LogWarning("PlayerController2D introuvable dans les parents de Lightning !");
+            Debug.LogWarning("PlayerController2D introuvable dans les parents de Ice_Ball !");
         }
     }
+
+
 }
