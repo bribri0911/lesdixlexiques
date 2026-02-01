@@ -165,13 +165,14 @@ MonoBehaviour:
   - {fileID: 4855842248813454624, guid: 69fce681ba95e1746a67f1fdec94beaf, type: 3}
   - {fileID: 4855842248813454624, guid: ba756ec6da9c3c144a024bff44d469f6, type: 3}
   - {fileID: 4855842248813454624, guid: 815f208bb93b18d43ad1bcd5a840558f, type: 3}
-  - {fileID: 4855842248813454624, guid: 3b113d4df4e76de4ab76a2957262edd3, type: 3}
   - {fileID: 4855842248813454624, guid: 12256fc96f6da5943b10d47af5fd75cc, type: 3}
   - {fileID: 4855842248813454624, guid: 1cc604182d32b3941a9f63e44ee06da1, type: 3}
   - {fileID: 4855842248813454624, guid: 32677ab8014a3a3408c5a9063389f28d, type: 3}
   - {fileID: 4855842248813454624, guid: 402e21c02066c3e4bb445addd558bfad, type: 3}
   - {fileID: 4855842248813454624, guid: 6dc6ae4597882c04daa3dc269a91bc99, type: 3}
   - {fileID: 4855842248813454624, guid: 70f299b26ba4c5d488119be8f60674cf, type: 3}
+  - {fileID: 4855842248813454624, guid: 70f299b26ba4c5d488119be8f60674cf, type: 3}
   numberOfMasks: 30
   isGameStarted: 0
   parentOfMask: {fileID: 0}
+  activeMasksOnFloor: []
