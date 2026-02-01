@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System;
-using Random = UnityEngine.Random; // Pour éviter les conflits avec System.Random
+using Random = UnityEngine.Random;
 
 public class Timer : MonoBehaviour
 {
@@ -19,17 +19,19 @@ public class Timer : MonoBehaviour
         originalPosition = textMesh.transform.localPosition;
         originalFontSize = textMesh.fontSize;
         
-        textMesh.text = "READY?";
+        ResetTimerValues();
     }
 
     void OnEnable()
     {
         WebsocketManage.OnStartGame += HandleActionStartGame;
+        WebsocketManage.OnResetGame += HandleRestartGame;
     }
 
     void OnDisable()
     {
         WebsocketManage.OnStartGame -= HandleActionStartGame;
+        WebsocketManage.OnResetGame -= HandleRestartGame;
     }
 
     void HandleActionStartGame()
@@ -39,6 +41,22 @@ public class Timer : MonoBehaviour
             isGameStarted = true;
             currentTime = 0f; 
         }
+    }
+
+    void HandleRestartGame()
+    {
+        ResetTimerValues();
+    }
+
+    private void ResetTimerValues()
+    {
+        isGameStarted = false;
+        currentTime = 0f;
+        
+        textMesh.text = "READY?";
+        textMesh.color = Color.white;
+        textMesh.fontSize = originalFontSize;
+        textMesh.transform.localPosition = originalPosition;
     }
 
     void Update()

@@ -146,7 +146,7 @@ MonoBehaviour:
   audioSource: {fileID: 8734872026389192779}
   startSound: {fileID: 8300000, guid: 2cef4fb552e495049be6415b51132eb6, type: 3}
   pvpActif: 0
-  timeSetPVP: 25
+  timeSetPVP: 30
   StartGame: 0
   _FireBallEventPrefab: {fileID: 0}
 --- !u!114 &403796688034127535
