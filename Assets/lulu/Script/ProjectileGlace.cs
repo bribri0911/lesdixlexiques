@@ -27,15 +27,19 @@ public class ProjectileGlace : Projectile
             GameObject temps = collision.gameObject;
 
             PlayerController2D playerController2D = temps.GetComponentInParent<PlayerController2D>();
-
+            
             if(playerController2D.userId != userId)
             {
                 Player_Point_De_Vie player_Point_De_Vie = temps.GetComponentInParent<Player_Point_De_Vie>();
                 player_Point_De_Vie.GetDomage(damage);
-                playerController2D.StopMovement(TimeSlow);
+                playerController2D.ModifMovement(TimeSlow);
             }
 
             
+        }
+        else if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
         }
 
     }

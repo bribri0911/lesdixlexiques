@@ -27,23 +27,27 @@ public class Projectile : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+     void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if(collision.tag == "Player")
+        if(collision.CompareTag("Player")) 
         {
             GameObject temps = collision.gameObject;
 
             PlayerController2D playerController2D = temps.GetComponentInParent<PlayerController2D>();
 
-            if(playerController2D.userId != userId)
+            if(playerController2D != null && playerController2D.userId != userId)
             {
                 Player_Point_De_Vie player_Point_De_Vie = temps.GetComponentInParent<Player_Point_De_Vie>();
-                player_Point_De_Vie.GetDomage(damage);
+                if(player_Point_De_Vie != null)
+                {
+                    player_Point_De_Vie.GetDomage(damage);
+                }
+                Destroy(gameObject);
             }
-
-            
         }
-
+        else if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

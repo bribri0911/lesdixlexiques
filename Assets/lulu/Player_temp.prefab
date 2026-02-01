@@ -78,11 +78,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController2D
   userId: 
   moveSpeed: 5
+  movespeedDeafal: 5
   acceleration: 10
   deceleration: 2
   lastDirection: {x: 0, y: 0}
   getMask: {fileID: 372518646047166410}
-  prefabTemps: {fileID: 4855842248813454624, guid: 1cc604182d32b3941a9f63e44ee06da1, type: 3}
+  prefabTemps: {fileID: 4855842248813454624, guid: 70f299b26ba4c5d488119be8f60674cf, type: 3}
 --- !u!114 &372518646047166410
 MonoBehaviour:
   m_ObjectHideFlags: 0

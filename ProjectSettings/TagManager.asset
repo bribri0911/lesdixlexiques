@@ -6,6 +6,8 @@ TagManager:
   tags:
   - EventsManager
   - Lightning
+  - Ice_Ball
+  - Wall
   layers:
   - Default
   - TransparentFX

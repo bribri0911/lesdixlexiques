@@ -27,7 +27,7 @@ public class PlayerController2D : MonoBehaviour
     }
 
         
-    public void StopMovement(float TimeSlow)
+    public void ModifMovement(float TimeSlow)
     {
         StartCoroutine(ResetSpeedRoutine(TimeSlow));
         moveSpeed = 0f; 
