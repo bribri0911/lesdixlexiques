@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Vitesse : MonoBehaviour
 {
+    [SerializeField] private float rapidity = 5f;
     private PlayerController2D player;
     void OnEnable()
     {
@@ -9,7 +10,7 @@ public class Vitesse : MonoBehaviour
 
         if (player != null)
         {
-            player.moveSpeed = player.movespeedDeafal * 2f;
+            player.moveSpeed = player.movespeedDeafal * rapidity;
         }
     }
      void OnDisable()

@@ -12,7 +12,6 @@ public class Fire_Ball : UseEffect
         {
             GameObject projObj = Instantiate(gOFire_Ball, transform.position, Quaternion.identity);
             Projectile projScript = projObj.GetComponent<Projectile>();
-            
             Vector2 dir = player.lastDirection == Vector2.zero ? Vector2.right : player.lastDirection;
             if (projScript != null) projScript.Setup(dir, ProjectileSpeed, DmgFire_Ball, player.userId);
         }

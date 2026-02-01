@@ -13,15 +13,10 @@ public class Destruction_Ball : UseEffect
         if (player != null)
         {
             player.ModifMovement(SelfStunTime);
-
             Vector2 dir = player.lastDirection == Vector2.zero ? Vector2.right : player.lastDirection;
             GameObject projObj = Instantiate(gODestruction_Ball, transform.position, Quaternion.identity);
-            
             ProjectileDestruction projScript = projObj.GetComponent<ProjectileDestruction>();
-            if (projScript != null)
-            {
-                projScript.Setup(dir, ProjectileSpeed, DmgDestruction_Ball, player.userId);
-            }
+            if (projScript != null) projScript.Setup(dir, ProjectileSpeed, DmgDestruction_Ball, player.userId);
         }
     }
 }

@@ -1,69 +1,54 @@
 using UnityEngine;
-using System.Collections;
 
 public class Mini : UseEffect
 {
-    [Header("Réglages Mini")]
-    [SerializeField] private float effectDuration = 5f; 
+    [Header("Réglages Passif Mini")]
     [SerializeField] private Vector3 miniScale = new Vector3(0.5f, 0.5f, 1f);
+    [SerializeField] private Vector3 normalScale = Vector3.one;
     
-    private Transform playerRoot;
-    private Vector3 originalScale = Vector3.one; 
-    private bool isEffectActive = false;
+    [SerializeField] private Transform playerTarget;
 
-    private void Start()
+    private void Awake()
     {
-        playerRoot = transform.root;
-    }
-
-    public override void Use()
-    {
-        if (isEffectActive) return;
-        StartCoroutine(MiniRoutine());
-    }
-
-    private IEnumerator MiniRoutine()
-    {
-        ApplyEffect();
-        yield return new WaitForSeconds(effectDuration);
-        ResetEffect();
-    }
-
-    private void ApplyEffect()
-    {
-        if (playerRoot != null && !isEffectActive)
+        // On cherche la racine du joueur (Tag "Player") une seule fois
+        playerTarget = transform.parent;
+        while (playerTarget != null && !playerTarget.CompareTag("Player"))
         {
-            isEffectActive = true;
-            originalScale = playerRoot.localScale;
-            playerRoot.localScale = miniScale;
-            Debug.Log("👶 Effet Mini activé");
+            playerTarget = playerTarget.parent;
         }
     }
 
-    private void ResetEffect()
+    // On laisse Use vide car ce masque n'a pas de pouvoir "actif"
+    public override void Use() 
     {
-        if (playerRoot != null && isEffectActive)
+        Debug.Log("Ce masque est passif, il n'y a rien à activer !");
+    }
+
+    // Dès que le masque apparaît sur le joueur (Equipé)
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        if (playerTarget != null)
         {
-            playerRoot.localScale = originalScale;
-            isEffectActive = false;
-            Debug.Log("🏃 Taille normale rétablie");
+            playerTarget.localScale = miniScale;
         }
     }
 
+    // Dès que le masque disparaît ou qu'on change (Déséquipé)
     private void OnDisable()
     {
-        if (isEffectActive)
+        if (playerTarget != null)
         {
-            StopAllCoroutines();
-            ResetEffect();
+            playerTarget.localScale = normalScale;
         }
     }
 
+    // Sécurité si on jette le masque par terre
     private void OnDestroy()
     {
-        if (isEffectActive)
+        if (playerTarget != null)
         {
-            ResetEffect();
+            playerTarget.localScale = normalScale;
         }
     }
 }

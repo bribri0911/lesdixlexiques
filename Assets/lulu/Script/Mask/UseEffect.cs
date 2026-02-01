@@ -1,17 +1,18 @@
 using UnityEngine;
-using System.Collections;
-using UnityEngine.UI; // Nécessaire pour l'UI
+using UnityEngine.UI;
 
 public abstract class UseEffect : MonoBehaviour
 {
     [Header("Réglages Cooldown")]
     public float cooldown = 2f;
-    public bool canUse = true;
     
     [Header("UI Feedback")]
-    [SerializeField] public Image cooldownDisplayImage; // Une image radiale (Type: Filled)
+    [SerializeField] public Image cooldownDisplayImage;
 
-    public float cooldownTimer = 0f;
+    // On stocke le moment précis où le cooldown sera fini
+    private float nextReadyTime = 0f;
+
+    public bool canUse => Time.time >= nextReadyTime;
 
     public abstract void Use();
 
@@ -19,27 +20,42 @@ public abstract class UseEffect : MonoBehaviour
     {
         if (!canUse) return;
 
-        canUse = false;
-        cooldownTimer = cooldown; 
+        // On définit le futur moment de disponibilité
+        nextReadyTime = Time.time + cooldown;
         Use();
-        StartCoroutine(CooldownRoutine());
     }
 
-    public IEnumerator CooldownRoutine()
+    protected virtual void Update()
     {
-        while (cooldownTimer > 0)
+        if (!canUse)
         {
-            cooldownTimer -= Time.deltaTime;
-            
+            float remaining = nextReadyTime - Time.time;
             if (cooldownDisplayImage != null)
             {
-                cooldownDisplayImage.fillAmount = cooldownTimer / cooldown;
+                cooldownDisplayImage.fillAmount = remaining / cooldown;
             }
-            
-            yield return null; 
         }
+        else
+        {
+            if (cooldownDisplayImage != null && cooldownDisplayImage.fillAmount != 0)
+            {
+                cooldownDisplayImage.fillAmount = 0;
+            }
+        }
+    }
 
-        canUse = true;
-        if (cooldownDisplayImage != null) cooldownDisplayImage.fillAmount = 0;
+    // Sécurité : Quand on réactive le masque, on vérifie si le cooldown a expiré pendant l'absence
+    protected virtual void OnEnable()
+    {
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        if (cooldownDisplayImage != null)
+        {
+            float remaining = Mathf.Max(0, nextReadyTime - Time.time);
+            cooldownDisplayImage.fillAmount = remaining / cooldown;
+        }
     }
 }

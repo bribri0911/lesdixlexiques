@@ -8,17 +8,11 @@ public class Aura_Fire : UseEffect
     public override void Use()
     {
         PlayerController2D player = GetComponentInParent<PlayerController2D>();
-        if (player != null)
+        if (player != null && player.GetComponentInChildren<AuraBase>() == null)
         {
-            // Éviter de cumuler les auras
-            if (player.GetComponentInChildren<AuraBase>() != null) return; 
-
-            GameObject auraObj = Instantiate(gOAura_Fire, player.transform.position, Quaternion.identity);
-            auraObj.transform.SetParent(player.transform);
-            auraObj.transform.localPosition = Vector3.zero;
-
-            AuraBase auraScript = auraObj.GetComponent<AuraBase>();
-            if (auraScript != null) auraScript.Setup(DmgAura_Fire, player.userId);
+            GameObject aura = Instantiate(gOAura_Fire, player.transform.position, Quaternion.identity);
+            aura.transform.SetParent(player.transform);
+            aura.GetComponent<AuraBase>()?.Setup(DmgAura_Fire, player.userId);
         }
     }
 }
