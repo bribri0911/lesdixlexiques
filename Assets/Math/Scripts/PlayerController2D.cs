@@ -25,7 +25,6 @@ public class PlayerController2D : MonoBehaviour
         acceleration = accel;
         deceleration = decel;
     }
-
         
     public void ModifMovement(float TimeSlow)
     {

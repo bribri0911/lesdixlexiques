@@ -10,10 +10,8 @@ public class FactoryManager : MonoBehaviour
     public GameObject playerPrefab;
 
     [Header("Suivi des Joueurs")]
-    // Dictionnaire pour l'accès immédiat via l'ID 6e4101...
     public Dictionary<string, PlayerController2D> playerDict = new Dictionary<string, PlayerController2D>();
 
-    // Liste visible dans l'inspecteur pour le Debug
     [SerializeField] private List<UserData> activePlayersDebug = new List<UserData>();
 
     [System.Serializable]
@@ -216,4 +214,16 @@ public class FactoryManager : MonoBehaviour
             activePlayersDebug.RemoveAll(x => x.id == id);
         }
     }
+
+    public void DeathUser(string userId)
+    {
+        if (playerDict.ContainsKey(userId))
+        {
+            playerDict.Remove(userId);
+            activePlayersDebug.RemoveAll(x => x.id == userId);
+        }
+    }
+
+
+
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4526450246955778741}
   - component: {fileID: 6110911284547662170}
+  - component: {fileID: 403796688034127535}
   m_Layer: 0
   m_Name: GestionEvents
   m_TagString: EventsManager
@@ -45,4 +46,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GestionEvents
   pvpActif: 0
-  timeSetPVP: 30
+  timeSetPVP: 20
+  _FireBallEventPrefab: {fileID: 0}
+--- !u!114 &403796688034127535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734081149591143070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6947eccbe4160c4eae9963815868756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GeneratMack
+  GetAllMask:
+  - {fileID: 4855842248813454624, guid: 69fce681ba95e1746a67f1fdec94beaf, type: 3}
+  - {fileID: 4855842248813454624, guid: ba756ec6da9c3c144a024bff44d469f6, type: 3}
+  - {fileID: 4855842248813454624, guid: 815f208bb93b18d43ad1bcd5a840558f, type: 3}
+  - {fileID: 4855842248813454624, guid: 3b113d4df4e76de4ab76a2957262edd3, type: 3}
+  - {fileID: 4855842248813454624, guid: 12256fc96f6da5943b10d47af5fd75cc, type: 3}
+  - {fileID: 4855842248813454624, guid: 1cc604182d32b3941a9f63e44ee06da1, type: 3}
+  - {fileID: 4855842248813454624, guid: 32677ab8014a3a3408c5a9063389f28d, type: 3}
+  - {fileID: 4855842248813454624, guid: 402e21c02066c3e4bb445addd558bfad, type: 3}
+  - {fileID: 4855842248813454624, guid: 6dc6ae4597882c04daa3dc269a91bc99, type: 3}
+  - {fileID: 4855842248813454624, guid: 70f299b26ba4c5d488119be8f60674cf, type: 3}

@@ -15,7 +15,6 @@ public class GestionEvents : MonoBehaviour
 
     void OnEnable()
     {
-        
         WebsocketManage.OnIceWorld += HandleActionCreateFireBall;
     }
 
