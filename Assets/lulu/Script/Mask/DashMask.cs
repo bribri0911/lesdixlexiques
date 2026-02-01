@@ -3,24 +3,15 @@ using System.Collections;
 
 public class DashMask : UseEffect
 {
-
     [SerializeField] private float dashSpeed = 45f; 
     [SerializeField] private float dashDuration = 0.3f;
-
     private bool isDashing = false;
-
-    private float defaultAccel = 10f;
-    private float defaultDecel = 2f;
 
     public override void Use()
     {
         PlayerController2D player = GetComponentInParent<PlayerController2D>();
-
         if (player != null && !isDashing)
         {
-            defaultAccel = player.acceleration;
-            defaultDecel = player.deceleration;
-
             StartCoroutine(Dash(player));
         }
     }
@@ -29,21 +20,19 @@ public class DashMask : UseEffect
     {
         isDashing = true;
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        
+        float oldAccel = player.acceleration;
+        float oldDecel = player.deceleration;
 
         player.SetMovementState(0f, 0f); 
 
-        Vector2 direction = player.lastDirection;
-        if (direction == Vector2.zero) direction = Vector2.down;
-        direction.Normalize();
-
+        Vector2 direction = player.lastDirection == Vector2.zero ? Vector2.down : player.lastDirection.normalized;
         rb.linearVelocity = direction * dashSpeed;
 
         yield return new WaitForSeconds(dashDuration);
 
         rb.linearVelocity = Vector2.zero;
-
-        player.SetMovementState(defaultAccel, defaultDecel);
-
+        player.SetMovementState(oldAccel, oldDecel);
         isDashing = false;
     }
 }

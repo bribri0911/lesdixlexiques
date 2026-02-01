@@ -2,18 +2,15 @@ using UnityEngine;
 
 public class Heal : UseEffect
 {
-    [SerializeField]
-    private Player_Point_De_Vie player_Point_De_Vie;
-    [SerializeField]
-    private float PvHeal = 20f;
-
-    void Start()
-    {
-        player_Point_De_Vie = gameObject.GetComponentInParent<Player_Point_De_Vie>();
-    }
+    [SerializeField] private float PvHeal = 20f;
 
     public override void Use()
     {
-        player_Point_De_Vie.GetDomage(-PvHeal);
+        // On récupère le script de vie sur le parent au moment de l'utilisation
+        Player_Point_De_Vie pv = GetComponentInParent<Player_Point_De_Vie>();
+        if (pv != null)
+        {
+            pv.GetDomage(-PvHeal);
+        }
     }
 }

@@ -9,9 +9,9 @@ public abstract class UseEffect : MonoBehaviour
     public bool canUse = true;
     
     [Header("UI Feedback")]
-    [SerializeField] private Image cooldownDisplayImage; // Une image radiale (Type: Filled)
+    [SerializeField] public Image cooldownDisplayImage; // Une image radiale (Type: Filled)
 
-    private float cooldownTimer = 0f;
+    public float cooldownTimer = 0f;
 
     public abstract void Use();
 
@@ -25,7 +25,7 @@ public abstract class UseEffect : MonoBehaviour
         StartCoroutine(CooldownRoutine());
     }
 
-    private IEnumerator CooldownRoutine()
+    public IEnumerator CooldownRoutine()
     {
         while (cooldownTimer > 0)
         {
