@@ -13,6 +13,7 @@ public class GetMask : MonoBehaviour
         maskForPlayer = new GameObject[nbrMaskMax];
     }
 
+
     public void AddMask(GameObject prefabMask)
     {
         if (!TryGetIndexNullForMask(out int indexGood))

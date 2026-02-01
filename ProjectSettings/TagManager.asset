@@ -9,6 +9,8 @@ TagManager:
   - Ice_Ball
   - Wall
   - Factory
+  - ParentMask
+  - Mask
   layers:
   - Default
   - TransparentFX

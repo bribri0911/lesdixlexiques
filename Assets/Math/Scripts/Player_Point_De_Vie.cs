@@ -10,6 +10,7 @@ public class Player_Point_De_Vie : MonoBehaviour
     [SerializeField]
     private PlayerController2D playerController2D;
 
+
     
 
 
@@ -44,6 +45,11 @@ public class Player_Point_De_Vie : MonoBehaviour
         }
 
     }
+
+    public void ResetPv()
+    {
+        Player_pv = Player_pv_max;
+    }
     
     
     void Start()
@@ -51,6 +57,7 @@ public class Player_Point_De_Vie : MonoBehaviour
         playerController2D = gameObject.GetComponent<PlayerController2D>();
         gOGestionEvents = GameObject.FindWithTag("EventsManager");
         gestionEvents = gOGestionEvents.GetComponent<GestionEvents>();
+        Player_pv = Player_pv_max;
     }
 
     void Update()

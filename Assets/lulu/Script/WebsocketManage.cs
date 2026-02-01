@@ -46,6 +46,7 @@ public class WebsocketManage : MonoBehaviour
 
     
     public static event Action OnStartGame;
+    public static event Action OnResetGame;
 
 
     void Awake()
@@ -147,6 +148,7 @@ public class WebsocketManage : MonoBehaviour
         int APERITIF = 256; // 2^8
         int IMPOSTEUR = 512; // 2^9
         int START = 1024; // 2^10
+        int RESET = 2048; // 2^10
 
         if ((nbrEvent & ICE_WORLD) != 0) OnIceWorld?.Invoke();
         if ((nbrEvent & FIRE_BALL) != 0) OnFireBall?.Invoke();
@@ -159,6 +161,7 @@ public class WebsocketManage : MonoBehaviour
         if ((nbrEvent & APERITIF) != 0) OnAperitif?.Invoke();
         if ((nbrEvent & IMPOSTEUR) != 0) OnImposteur?.Invoke();
         if ((nbrEvent & START) != 0) OnStartGame?.Invoke();
+        if ((nbrEvent & RESET) != 0) OnResetGame?.Invoke();
 
         if (nbrEvent != 0) Debug.Log($"🎭 Events Globaux déclenchés (Somme : {nbrEvent})");
     }
@@ -180,7 +183,6 @@ public class WebsocketManage : MonoBehaviour
         }
     }
 
-    // Cette fonction est appelée par le thread du serveur
     public void Enqueue(Action action) => _mainThreadQueue.Enqueue(action);
 
     void OnApplicationQuit()
@@ -189,7 +191,6 @@ public class WebsocketManage : MonoBehaviour
     }
 }
 
-// 2. Comportement du serveur (Internal)
 public class UnityBehavior : WebSocketBehavior
 {
     protected override void OnOpen()

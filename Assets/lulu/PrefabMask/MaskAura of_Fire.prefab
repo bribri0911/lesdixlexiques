@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1085d3f629591734eb0f1680c3c4acfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Aura_Fire
+  canUse: 1
+  cooldown: 2
   DmgAura_Fire: 16
   gOAura_Fire: {fileID: 7904973635547353298, guid: e8c16e5544015b24e95635cbd73dbef5, type: 3}
 --- !u!1 &6990007707878073052

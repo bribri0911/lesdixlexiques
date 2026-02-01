@@ -68,6 +68,14 @@ public class PlayerController2D : MonoBehaviour
         getMask.ChangeMask(direction);
     }
 
+    public void RemoveAllMask()
+    {
+        for (int i = 0; i < getMask.nbrMaskMax; i++)
+        {
+            getMask.RemoveMask(0);
+        }
+    }
+
     public void GetMaskFunction()
     {
         getMask.AddMask(prefabTemps);

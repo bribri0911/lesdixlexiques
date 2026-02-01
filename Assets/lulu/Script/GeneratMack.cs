@@ -18,11 +18,13 @@ public class GeneratMack : MonoBehaviour
     void OnEnable()
     {
         WebsocketManage.OnStartGame += HandleActionStartGame;
+        WebsocketManage.OnResetGame += HandleActionReset;
     }
 
     void OnDisable()
     {
         WebsocketManage.OnStartGame -= HandleActionStartGame;
+        WebsocketManage.OnResetGame -= HandleActionReset;
     }
 
     void HandleActionStartGame()
@@ -31,6 +33,15 @@ public class GeneratMack : MonoBehaviour
         {
             isGameStarted = true;
             GenerateMasks();
+        }
+    }
+
+    void HandleActionReset()
+    {
+        if (isGameStarted)
+        {
+            isGameStarted = false;
+            DestroyAllMask();
         }
     }
 
@@ -60,4 +71,14 @@ public class GeneratMack : MonoBehaviour
 
         Debug.Log($"🎭 {numberOfMasks} masques ont été générés aléatoirement.");
     }
+
+    void DestroyAllMask()
+    {
+        GameObject[] temps = parentOfMask.GetComponentsInChildren<GameObject>();
+        foreach (GameObject item in temps)
+        {
+            Destroy(item);
+        }
+    }
+
 }
