@@ -5,6 +5,7 @@ public class GestionEvents : MonoBehaviour
 {
     public bool pvpActif = false;
     public float timeSetPVP = 30f;
+    public bool StartGame = false;
     
     private bool canTogglePVP = false;
     private Coroutine pvpCoroutine;

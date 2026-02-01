@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class FactoryManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class FactoryManager : MonoBehaviour
     public Dictionary<string, PlayerController2D> playerDict = new Dictionary<string, PlayerController2D>();
 
     [SerializeField] private List<UserData> activePlayersDebug = new List<UserData>();
+
+    public static event Action<int> OnActionInPlayerInGame;
 
     [System.Serializable]
     public class UserData
@@ -197,6 +200,8 @@ public class FactoryManager : MonoBehaviour
         playerDict.Add(id, ctrl);
 
         activePlayersDebug.Add(new UserData { id = id, controller = ctrl });
+        
+        OnActionInPlayerInGame?.Invoke(playerDict.Count);
     }
 
     private void UpdateDebugInfo(string id, Vector2 input)
@@ -221,6 +226,7 @@ public class FactoryManager : MonoBehaviour
         {
             playerDict.Remove(userId);
             activePlayersDebug.RemoveAll(x => x.id == userId);
+            OnActionInPlayerInGame?.Invoke(playerDict.Count);
         }
     }
 

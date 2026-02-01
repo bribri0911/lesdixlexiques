@@ -44,6 +44,9 @@ public class WebsocketManage : MonoBehaviour
     public static event Action OnAperitif;
     public static event Action OnImposteur;
 
+    
+    public static event Action OnStartGame;
+
 
     void Awake()
     {
@@ -52,10 +55,8 @@ public class WebsocketManage : MonoBehaviour
 
     void Start()
     {
-        // Initialisation du serveur sur le port 4242
         wssv = new WebSocketServer(System.Net.IPAddress.Any, 4242);
 
-        // On définit la route "ws://127.0.0.1:4242/Data"
         wssv.AddWebSocketService<UnityBehavior>("/Data");
 
         wssv.Start();
@@ -64,7 +65,6 @@ public class WebsocketManage : MonoBehaviour
 
     void Update()
     {
-        // On vide la file d'attente sur le thread principal
         lock (_mainThreadQueue)
         {
             while (_mainThreadQueue.Count > 0)
@@ -146,7 +146,8 @@ public class WebsocketManage : MonoBehaviour
         int COFFEE = 128; // 2^7
         int APERITIF = 256; // 2^8
         int IMPOSTEUR = 512; // 2^9
-        
+        int START = 1024; // 2^10
+
         if ((nbrEvent & ICE_WORLD) != 0) OnIceWorld?.Invoke();
         if ((nbrEvent & FIRE_BALL) != 0) OnFireBall?.Invoke();
         if ((nbrEvent & CUP_CAKE) != 0) OnCupCake?.Invoke();
@@ -157,6 +158,7 @@ public class WebsocketManage : MonoBehaviour
         if ((nbrEvent & COFFEE) != 0) OnCoffee?.Invoke();
         if ((nbrEvent & APERITIF) != 0) OnAperitif?.Invoke();
         if ((nbrEvent & IMPOSTEUR) != 0) OnImposteur?.Invoke();
+        if ((nbrEvent & START) != 0) OnStartGame?.Invoke();
 
         if (nbrEvent != 0) Debug.Log($"🎭 Events Globaux déclenchés (Somme : {nbrEvent})");
     }

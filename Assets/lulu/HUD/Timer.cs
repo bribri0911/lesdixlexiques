@@ -1,13 +1,15 @@
 using TMPro;
 using UnityEngine;
+using System;
+using Random = UnityEngine.Random; // Pour éviter les conflits avec System.Random
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMesh;
     private float currentTime = 0f;
+    private bool isGameStarted = false; 
 
-    [SerializeField]
-    private float COUNTDOWN_START = 30f;
+    [SerializeField] private float COUNTDOWN_START = 30f;
     
     private Vector3 originalPosition;
     private float originalFontSize;
@@ -16,10 +18,33 @@ public class Timer : MonoBehaviour
     {
         originalPosition = textMesh.transform.localPosition;
         originalFontSize = textMesh.fontSize;
+        
+        textMesh.text = "READY?";
+    }
+
+    void OnEnable()
+    {
+        WebsocketManage.OnStartGame += HandleActionStartGame;
+    }
+
+    void OnDisable()
+    {
+        WebsocketManage.OnStartGame -= HandleActionStartGame;
+    }
+
+    void HandleActionStartGame()
+    {
+        if (!isGameStarted)
+        {
+            isGameStarted = true;
+            currentTime = 0f; 
+        }
     }
 
     void Update()
     {
+        if (!isGameStarted) return;
+
         currentTime += Time.deltaTime;
 
         if (currentTime < COUNTDOWN_START)
@@ -41,10 +66,8 @@ public class Timer : MonoBehaviour
         if (remainingTime <= 5f)
         {
             textMesh.color = Color.red;
-
             float t = 1f - (remainingTime / 5f); 
             textMesh.fontSize = Mathf.Lerp(originalFontSize, originalFontSize * 1.5f, t);
-
             float shakeIntensity = t * 5f; 
             textMesh.transform.localPosition = originalPosition + (Vector3)Random.insideUnitCircle * shakeIntensity;
         }
@@ -58,7 +81,7 @@ public class Timer : MonoBehaviour
 
     private void HandleStopwatch(float elapsedTime)
     {
-        if (textMesh.color != Color.white)
+        if (textMesh.color != Color.white || textMesh.fontSize != originalFontSize)
         {
             textMesh.color = Color.white;
             textMesh.fontSize = originalFontSize;

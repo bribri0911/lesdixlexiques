@@ -80,7 +80,7 @@ MonoBehaviour:
   moveSpeed: 5
   movespeedDeafal: 5
   acceleration: 10
-  deceleration: 2
+  deceleration: 5
   lastDirection: {x: 0, y: 0}
   getMask: {fileID: 372518646047166410}
   prefabTemps: {fileID: 4855842248813454624, guid: 6dc6ae4597882c04daa3dc269a91bc99, type: 3}
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player_Point_De_Vie
   gOGestionEvents: {fileID: 0}
   Player_pv: 100
+  playerController2D: {fileID: 0}
 --- !u!1 &5972841115376568334
 GameObject:
   m_ObjectHideFlags: 0
