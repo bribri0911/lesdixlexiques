@@ -195,14 +195,13 @@ public class UnityBehavior : WebSocketBehavior
 {
     protected override void OnOpen()
     {
-        string id = ID; // ID unique de la session
+        string id = ID; 
         WebsocketManage.Instance.Enqueue(() =>
         {
             WebsocketManage.Instance.AddUser(id);
         });
     }
 
-    // Appelé quand l'onglet HTML est fermé
     protected override void OnClose(CloseEventArgs e)
     {
         string id = ID;

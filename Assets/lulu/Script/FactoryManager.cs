@@ -69,8 +69,9 @@ public class FactoryManager : MonoBehaviour
         {
             isGameStart = false;
             ReviveAllPlayers();
-            ResetPlayer();
+            ResetMaskPlayer();
             ResetPv();
+            OnActionInPlayerInGame?.Invoke(playerDict.Count);
         }
     }
 
@@ -275,8 +276,6 @@ public class FactoryManager : MonoBehaviour
         activePlayersDebug.Add(new UserData { id = id, controller = ctrl });
         OnActionInPlayerInGame?.Invoke(playerDict.Count);
     }
-
-
     public void DeathUser(string userId)
     {
         if (playerDict.ContainsKey(userId))
@@ -306,7 +305,8 @@ public class FactoryManager : MonoBehaviour
             PlayerController2D player = deadPlayerDict[userId];
 
             player.transform.position = spawnPosition;
-            player.enabled = true;
+            GameObject playerTemps = player.GetComponent<GameObject>();
+            playerTemps.SetActive(true);
 
             playerDict.Add(userId, player);
             deadPlayerDict.Remove(userId);
@@ -328,7 +328,7 @@ public class FactoryManager : MonoBehaviour
         }
     }
 
-    public void ResetPlayer()
+    public void ResetMaskPlayer()
     {
         foreach (PlayerController2D controller in playerDict.Values)
         {

@@ -5,7 +5,7 @@ public class GestionEvents : MonoBehaviour
 {
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip startSound; // Glisse ton fichier .wav ici
+    [SerializeField] private AudioClip startSound;
 
     public bool pvpActif = false;
     public float timeSetPVP = 30f;
@@ -20,12 +20,14 @@ public class GestionEvents : MonoBehaviour
     {
         WebsocketManage.OnIceWorld += HandleActionCreateFireBall;
         WebsocketManage.OnStartGame += HandleActionStartGame;
+        WebsocketManage.OnResetGame += HandleRestartGame;
     }
 
     void OnDisable()
     {
         WebsocketManage.OnIceWorld -= HandleActionCreateFireBall;
         WebsocketManage.OnStartGame -= HandleActionStartGame;
+        WebsocketManage.OnResetGame -= HandleRestartGame;
     }
 
     void HandleActionStartGame()
@@ -33,21 +35,35 @@ public class GestionEvents : MonoBehaviour
         if (!StartGame)
         {
             StartGame = true;
-
             if (audioSource != null && startSound != null)
             {
-                audioSource.PlayOneShot(startSound);
+                audioSource.clip = startSound;
+                audioSource.Play();
             }
-
             pvpCoroutine = StartCoroutine(AutoActivatePVP());
-            Debug.Log("🎮 Game Started & Sound Played!");
         }
     }
 
-    void HandleActionCreateFireBall() 
-    { 
-        
+    void HandleRestartGame()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Stop(); 
+            audioSource.clip = null; 
+        }
+
+        if (pvpCoroutine != null)
+        {
+            StopCoroutine(pvpCoroutine);
+            pvpCoroutine = null;
+        }
+
+        StartGame = false;
+        pvpActif = false;
+        canTogglePVP = false;
     }
+
+    void HandleActionCreateFireBall() { }
 
     private IEnumerator AutoActivatePVP()
     {
@@ -70,7 +86,3 @@ public class GestionEvents : MonoBehaviour
         }
     }
 }
-
-
-
-
