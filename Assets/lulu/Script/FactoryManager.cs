@@ -63,18 +63,6 @@ public class FactoryManager : MonoBehaviour
 
     void HandleStartGame() { if (!isGameStart) isGameStart = true; }
 
-    void HandleResetGame()
-    {
-        if (isGameStart)
-        {
-            isGameStart = false;
-            ReviveAllPlayers();
-            ResetMaskPlayer();
-            ResetPv();
-            OnActionInPlayerInGame?.Invoke(playerDict.Count);
-        }
-    }
-
     private void HandleActionIceWorld() { StartCoroutine(IceWorldRoutine()); }
 
     private IEnumerator IceWorldRoutine()
@@ -276,28 +264,6 @@ public class FactoryManager : MonoBehaviour
         activePlayersDebug.Add(new UserData { id = id, controller = ctrl });
         OnActionInPlayerInGame?.Invoke(playerDict.Count);
     }
-    public void DeathUser(string userId)
-    {
-        if (playerDict.ContainsKey(userId))
-        {
-            PlayerController2D player = playerDict[userId];
-
-            player.transform.position = deathZonePosition;
-            player.enabled = false;
-
-            deadPlayerDict.Add(userId, player);
-            playerDict.Remove(userId);
-
-            deadPlayersIds.Add(userId);
-            activePlayersDebug.RemoveAll(x => x.id == userId);
-
-            OnActionInPlayerInGame?.Invoke(playerDict.Count);
-
-
-            if (playerDict.Count == 1) OnWinGame?.Invoke();
-        }
-    }
-
     public void ReviveUser(string userId)
     {
         if (deadPlayerDict.ContainsKey(userId))
@@ -305,8 +271,10 @@ public class FactoryManager : MonoBehaviour
             PlayerController2D player = deadPlayerDict[userId];
 
             player.transform.position = spawnPosition;
-            GameObject playerTemps = player.GetComponent<GameObject>();
-            playerTemps.SetActive(true);
+
+            // CORRECTION ICI : On active le GameObject directement
+            player.gameObject.SetActive(true);
+            player.enabled = true;
 
             playerDict.Add(userId, player);
             deadPlayerDict.Remove(userId);
@@ -315,8 +283,34 @@ public class FactoryManager : MonoBehaviour
             activePlayersDebug.Add(new UserData { id = userId, controller = player });
 
             OnActionInPlayerInGame?.Invoke(playerDict.Count);
-
         }
+    }
+
+    public void DeathUser(string userId)
+    {
+        if (playerDict.ContainsKey(userId))
+        {
+            PlayerController2D player = playerDict[userId];
+
+            player.transform.position = deathZonePosition;
+
+            // On désactive le visuel et le script
+            player.enabled = false;
+            player.gameObject.SetActive(false);
+
+            deadPlayerDict.Add(userId, player);
+            playerDict.Remove(userId);
+            // ... reste du code identique
+        }
+    }
+
+    void HandleResetGame()
+    {
+        isGameStart = false;
+        ReviveAllPlayers();
+        ResetMaskPlayer();
+        ResetPv();
+        OnActionInPlayerInGame?.Invoke(playerDict.Count);
     }
 
     public void ReviveAllPlayers()

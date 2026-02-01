@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GetMask : MonoBehaviour
@@ -13,19 +12,23 @@ public class GetMask : MonoBehaviour
         maskForPlayer = new GameObject[nbrMaskMax];
     }
 
-
     public void AddMask(GameObject prefabMask)
     {
         if (!TryGetIndexNullForMask(out int indexGood))
         {
             indexGood = indexMask;
+            // On dépose l'ancien masque au sol avant d'en prendre un nouveau
             RemoveMask(indexGood);
         }
 
-        GameObject maskInstance = Instantiate(prefabMask, child.transform);
-        maskInstance.name = $"Mask_{indexGood}";
-        maskForPlayer[indexGood] = maskInstance;
-
+        // On change le parent vers le slot du joueur
+        prefabMask.transform.SetParent(child.transform);
+        prefabMask.transform.localPosition = Vector3.zero; 
+        prefabMask.name = $"Mask_{indexGood}";
+        
+        maskForPlayer[indexGood] = prefabMask;
+        
+        // On met à jour l'affichage (active le nouveau, désactive les autres)
         UpdateActiveMask(indexGood);
     }
 
@@ -47,8 +50,30 @@ public class GetMask : MonoBehaviour
     {
         if (index >= 0 && index < nbrMaskMax && maskForPlayer[index] != null)
         {
-            Destroy(maskForPlayer[index]);
+            GameObject maskToDrop = maskForPlayer[index];
+
+            // 1. Déterminer le parent de destination
+            Transform worldParent = null;
+            if (GeneratMack.Instance != null && GeneratMack.Instance.parentOfMask != null)
+                worldParent = GeneratMack.Instance.parentOfMask.transform;
+
+            // 2. Sortir de l'inventaire
+            maskToDrop.transform.SetParent(worldParent);
+
+            // 3. Placer au sol et SURTOUT le réactiver pour qu'il soit visible
+            maskToDrop.transform.position = transform.position;
+            maskToDrop.SetActive(true); 
+
+            // 4. Le rendre à nouveau détectable par le système de ramassage
+            if (GeneratMack.Instance != null)
+            {
+                GeneratMack.Instance.activeMasksOnFloor.Add(maskToDrop);
+            }
+
+            // 5. Vider le slot
             maskForPlayer[index] = null;
+            
+            Debug.Log($"📦 Masque {maskToDrop.name} déposé au sol.");
         }
     }
 
@@ -60,10 +85,12 @@ public class GetMask : MonoBehaviour
         if (count < 2) return;
 
         int nextIndex = indexMask;
+        int attempts = 0;
         do
         {
             nextIndex = (nextIndex + direction + nbrMaskMax) % nbrMaskMax;
-        } while (maskForPlayer[nextIndex] == null);
+            attempts++;
+        } while (maskForPlayer[nextIndex] == null && attempts < nbrMaskMax);
 
         UpdateActiveMask(nextIndex);
     }
@@ -75,6 +102,7 @@ public class GetMask : MonoBehaviour
         {
             if (maskForPlayer[i] != null)
             {
+                // Seul le masque sélectionné est visible sur le joueur
                 maskForPlayer[i].SetActive(i == indexMask);
             }
         }
@@ -85,13 +113,10 @@ public class GetMask : MonoBehaviour
         if (maskForPlayer[indexMask] != null)
         {
             UseEffect currentMaskScript = maskForPlayer[indexMask].GetComponent<UseEffect>();
-
             if (currentMaskScript != null)
             {
                 currentMaskScript.TryUse();
             }
         }
     }
-
-
 }

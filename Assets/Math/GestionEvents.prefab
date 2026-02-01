@@ -172,6 +172,6 @@ MonoBehaviour:
   - {fileID: 4855842248813454624, guid: 402e21c02066c3e4bb445addd558bfad, type: 3}
   - {fileID: 4855842248813454624, guid: 6dc6ae4597882c04daa3dc269a91bc99, type: 3}
   - {fileID: 4855842248813454624, guid: 70f299b26ba4c5d488119be8f60674cf, type: 3}
-  numberOfMasks: 10
+  numberOfMasks: 30
   isGameStarted: 0
   parentOfMask: {fileID: 0}
