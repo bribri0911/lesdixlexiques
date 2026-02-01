@@ -64,7 +64,7 @@ public class GeneratMack : MonoBehaviour
             GameObject temps = Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
             temps.transform.parent = parentOfMask.transform;
             
-            activeMasksOnFloor.Add(temps); // On enregistre le masque
+            activeMasksOnFloor.Add(temps);
         }
     }
 

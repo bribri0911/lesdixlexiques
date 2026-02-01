@@ -1,25 +1,45 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI; // Nécessaire pour l'UI
 
 public abstract class UseEffect : MonoBehaviour
 {
+    [Header("Réglages Cooldown")]
+    public float cooldown = 2f;
     public bool canUse = true;
-    public abstract void Use();
+    
+    [Header("UI Feedback")]
+    [SerializeField] private Image cooldownDisplayImage; // Une image radiale (Type: Filled)
 
-    public float cooldown = 2f; // durée du cooldown en secondes
-    private float nextTimeAvailable = 0f;
+    private float cooldownTimer = 0f;
+
+    public abstract void Use();
 
     public void TryUse()
     {
         if (!canUse) return;
 
         canUse = false;
+        cooldownTimer = cooldown; 
         Use();
         StartCoroutine(CooldownRoutine());
     }
+
     private IEnumerator CooldownRoutine()
     {
-        yield return new WaitForSeconds(cooldown);
+        while (cooldownTimer > 0)
+        {
+            cooldownTimer -= Time.deltaTime;
+            
+            if (cooldownDisplayImage != null)
+            {
+                cooldownDisplayImage.fillAmount = cooldownTimer / cooldown;
+            }
+            
+            yield return null; 
+        }
+
         canUse = true;
+        if (cooldownDisplayImage != null) cooldownDisplayImage.fillAmount = 0;
     }
 }
