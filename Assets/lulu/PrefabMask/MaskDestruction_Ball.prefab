@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5659688510268659202}
-  - component: {fileID: 8194543987353131215}
+  - component: {fileID: -2687507023992644445}
   m_Layer: 0
-  m_Name: MaskIce 1
+  m_Name: MaskDestruction_Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 5893738772978058317}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8194543987353131215
+--- !u!114 &-2687507023992644445
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4855842248813454624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b36e2ae576f48ee4bba54aef4de2a0cb, type: 3}
+  m_Script: {fileID: 11500000, guid: cc4d2dfc45a28674dbb64f86dc51548a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Ice_Ball
-  DmgIce_Ball: 25
-  ProjectileSpeed: 8
-  gOIce_Ball: {fileID: 8504225862538174102, guid: 879b0cd0f25c67546a35dbbb1d3c847c, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::Destruction_Ball
+  canUse: 1
+  cooldown: 6.5
+  DmgDestruction_Ball: 50
+  ProjectileSpeed: 15
+  gODestruction_Ball: {fileID: 8504225862538174102, guid: 1266a9a0e5b0efc4db5a7e849752d234, type: 3}
 --- !u!1 &6990007707878073052
 GameObject:
   m_ObjectHideFlags: 0

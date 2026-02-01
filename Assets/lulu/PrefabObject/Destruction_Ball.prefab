@@ -137,9 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea525fa7540027e4a94a588d92c61c85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileGlace
-  lifetime: 15
+  lifetime: 4
   rb: {fileID: 0}
-  damage: 25
+  damage: 50
   userId: 
   TimeSlow: 1
 --- !u!50 &-372074344323137277

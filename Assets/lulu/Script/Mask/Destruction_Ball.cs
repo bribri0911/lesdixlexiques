@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class Ice_Ball : UseEffect
+public class Destruction_Ball : UseEffect
 {
     [SerializeField]
-    private float DmgIce_Ball = 25f;
+    private float DmgDestruction_Ball = 50f;
 
     [SerializeField]
-    private float ProjectileSpeed = 5f;
+    private float ProjectileSpeed = 15f;
     
 
     [SerializeField]
-    private GameObject gOIce_Ball;
+    private GameObject gODestruction_Ball;
     public override void Use()
     {
         // 1. On cherche le PlayerController2D dans les parents de cet objet
@@ -18,7 +18,7 @@ public class Ice_Ball : UseEffect
 
         if (player != null)
         {
-            GameObject projObj = Instantiate(gOIce_Ball, transform.position, Quaternion.identity);
+            GameObject projObj = Instantiate(gODestruction_Ball, transform.position, Quaternion.identity);
 
             projObj.transform.parent = player.transform;
 
@@ -28,12 +28,12 @@ public class Ice_Ball : UseEffect
 
             if (projScript != null)
             {
-                projScript.Setup(dir, ProjectileSpeed, DmgIce_Ball, player.userId);
+                projScript.Setup(dir, ProjectileSpeed, DmgDestruction_Ball, player.userId);
             }
         }
         else
         {
-            Debug.LogWarning("PlayerController2D introuvable dans les parents de Ice_Ball !");
+            Debug.LogWarning("PlayerController2D introuvable dans les parents de Destruction_Ball !");
         }
     }
 

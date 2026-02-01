@@ -31,7 +31,7 @@ public class Player_Point_De_Vie : MonoBehaviour
 
     private void CheckIsDead()
     {
-        if (Player_pv < 0)
+        if (Player_pv <= 0)
             gameObject.SetActive(false);
 
     }
