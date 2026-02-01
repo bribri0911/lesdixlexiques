@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class Player_Point_De_Vie : MonoBehaviour
 {
     [SerializeField] 
@@ -8,6 +7,8 @@ public class Player_Point_De_Vie : MonoBehaviour
     public float Player_pv=100f;
     public readonly float Player_pv_max=100f;
 
+    [SerializeField]
+    private PlayerController2D playerController2D;
 
 
 
@@ -32,19 +33,26 @@ public class Player_Point_De_Vie : MonoBehaviour
     private void CheckIsDead()
     {
         if (Player_pv <= 0)
+        {
             gameObject.SetActive(false);
+            
+            FactoryManager factoryManager = GameObject.FindWithTag("Factory")?.GetComponent<FactoryManager>();
+            if(factoryManager != null)
+            {
+                factoryManager.DeathUser(playerController2D.userId);
+            }
+        }
 
     }
     
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
+        playerController2D = gameObject.GetComponent<PlayerController2D>();
         gOGestionEvents = GameObject.FindWithTag("EventsManager");
         gestionEvents = gOGestionEvents.GetComponent<GestionEvents>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
