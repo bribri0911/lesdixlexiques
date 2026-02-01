@@ -4,8 +4,8 @@ using System.Collections;
 public class DashMask : UseEffect
 {
 
-    [SerializeField] private float dashSpeed = 20f; 
-    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashSpeed = 45f; 
+    [SerializeField] private float dashDuration = 0.3f;
 
     private bool isDashing = false;
 
