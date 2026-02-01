@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5659688510268659202}
-  - component: {fileID: 8194543987353131215}
   - component: {fileID: -3376205407860973784}
+  - component: {fileID: 4822143765527275086}
   m_Layer: 0
   m_Name: MaskIce
   m_TagString: Mask
@@ -34,23 +34,6 @@ Transform:
   - {fileID: 1482043821628474948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8194543987353131215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4855842248813454624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b36e2ae576f48ee4bba54aef4de2a0cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Ice_Ball
-  canUse: 1
-  cooldown: 2
-  DmgIce_Ball: 25
-  ProjectileSpeed: 8
-  gOIce_Ball: {fileID: 8504225862538174102, guid: 879b0cd0f25c67546a35dbbb1d3c847c, type: 3}
 --- !u!58 &-3376205407860973784
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -87,6 +70,23 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.3
+--- !u!114 &4822143765527275086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4855842248813454624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0413821caa546ec4cb31672576d37625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Fire_Ball
+  canUse: 1
+  cooldown: 2
+  DmgFire_Ball: 10
+  ProjectileSpeed: 30
+  gOFire_Ball: {fileID: 8504225862538174102, guid: 7708ba115415e494793f52b23e873556, type: 3}
 --- !u!1 &7292933347020028378
 GameObject:
   m_ObjectHideFlags: 0
