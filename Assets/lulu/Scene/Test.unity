@@ -207,8 +207,8 @@ Canvas:
   m_GameObject: {fileID: 20535439}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1804155813}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -219,7 +219,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -20
   m_TargetDisplay: 0
 --- !u!1 &43539682
 GameObject:
@@ -649,6 +649,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 403796688034127535, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
+      propertyPath: GetAllMask.Array.size
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3734081149591143070, guid: db6108eefc7e45a458a2c5e26c2557a2, type: 3}
       propertyPath: m_Name
       value: GestionEvents
@@ -1140,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   countPlayerAlive: {fileID: 2131477796}
-  canvasVictory: {fileID: 0}
+  canvasVictory: {fileID: 1229000062}
 --- !u!114 &2131477796
 MonoBehaviour:
   m_ObjectHideFlags: 0
