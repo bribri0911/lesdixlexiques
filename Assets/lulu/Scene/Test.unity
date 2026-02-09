@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   textMesh: {fileID: 114367872}
-  COUNTDOWN_START: 20
+  COUNTDOWN_START: 25
 --- !u!114 &114367872
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class Mini : UseEffect
         }
     }
 
-    // On laisse Use vide car ce masque n'a pas de pouvoir "actif"
     public override void Use() 
     {
         Debug.Log("Ce masque est passif, il n'y a rien à activer !");

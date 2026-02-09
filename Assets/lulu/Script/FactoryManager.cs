@@ -294,13 +294,20 @@ public class FactoryManager : MonoBehaviour
 
             player.transform.position = deathZonePosition;
 
-            // On désactive le visuel et le script
             player.enabled = false;
             player.gameObject.SetActive(false);
 
             deadPlayerDict.Add(userId, player);
             playerDict.Remove(userId);
-            // ... reste du code identique
+
+            deadPlayersIds.Add(userId);
+            activePlayersDebug.RemoveAll(x => x.id == userId);
+
+            OnActionInPlayerInGame?.Invoke(playerDict.Count);
+
+            Debug.Log($"💀 {userId} mis en zone de mort. Restants : {playerDict.Count}");
+
+            if (playerDict.Count == 1) OnWinGame?.Invoke();
         }
     }
 
